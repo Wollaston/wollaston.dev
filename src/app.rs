@@ -3,6 +3,9 @@ use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
 
+pub mod components;
+pub mod routes;
+
 #[component]
 pub fn App() -> impl IntoView {
     // Provides context that manages stylesheets, titles, meta tags, etc.
@@ -16,7 +19,7 @@ pub fn App() -> impl IntoView {
         <Stylesheet id="leptos" href="/pkg/wollaston-dev.css"/>
 
         // sets the document title
-        <Title text="Welcome to Leptos"/>
+        <Title text="wollaston.dev"/>
 
         // content for this welcome page
         <Router fallback=|| {
@@ -28,23 +31,15 @@ pub fn App() -> impl IntoView {
             .into_view()
         }>
             <main>
+                <components::Layout/>
                 <Routes>
-                    <Route path="" view=HomePage/>
+                    <Route path="" view=routes::home::HomePage/>
+                    <Route path="/about" view=||view! {"About"}/>
+                    <Route path="/projects" view=||view! {"Projects"}/>
+                    <Route path="/blog"  view=||view! {"Blog"}/>
+                    <Route path="/contact" view=||view! {"Contact"}/>
                 </Routes>
             </main>
         </Router>
-    }
-}
-
-/// Renders the home page of your application.
-#[component]
-fn HomePage() -> impl IntoView {
-    // Creates a reactive value to update the button
-    let (count, set_count) = create_signal(0);
-    let on_click = move |_| set_count.update(|count| *count += 1);
-
-    view! {
-        <h1 class="text-blue-500">"Welcome to Leptos!"</h1>
-        <button on:click=on_click>"Click Me: " {count}</button>
     }
 }
