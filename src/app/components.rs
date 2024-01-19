@@ -1,10 +1,13 @@
 use leptos::*;
+use leptos_router::Outlet;
 
 #[component]
 pub fn Layout() -> impl IntoView {
     view! {
-        <div class="h-1/5">
-            <div><NavBar /></div>
+        <div class="flex flex-col min-h-screen">
+            <NavBar />
+            <Outlet />
+            <Footer />
         </div>
     }
 }
@@ -46,4 +49,28 @@ pub fn NavBar() -> impl IntoView {
       </div>
     </nav>
             }
+}
+
+#[component]
+pub fn Footer() -> impl IntoView {
+    view! {
+        <footer class="p-1 bg-[#fee5b0] md:p-2 lg:p-4 dark:bg-gray-800">
+            <div class="flex flex-col justify-center items-center mx-auto max-w-screen-xl text-center"> <img src="/assets/logo.png" class="m-4 h-12 rounded-lg" alt="Wollaston Logo" /> <ul class="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
+                    <li>
+                        <a href="/about" class="mr-4 hover:text-blue-700 md:mr-6 ">"About"</a>
+                    </li>
+                    <li>
+                        <a href="/blog" class="mr-4 hover:text-blue-700 md:mr-6">"Blog"</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/Wollaston" class="mr-4 hover:text-blue-700 md:mr-6">"Github"</a>
+                    </li>
+                    <li>
+                        <a href="/contact" class="mr-4 hover:text-blue-700 md:mr-6">"Contact"</a>
+                    </li>
+                </ul>
+                <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">"© 2024 All Rights Reserved"</span>
+            </div>
+        </footer>
+    }
 }

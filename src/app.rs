@@ -31,13 +31,14 @@ pub fn App() -> impl IntoView {
             .into_view()
         }>
             <main>
-                <components::Layout/>
                 <Routes>
-                    <Route path="" view=routes::home::HomePage/>
-                    <Route path="/about" view=||view! {"About"}/>
-                    <Route path="/projects" view=||view! {"Projects"}/>
-                    <Route path="/blog"  view=||view! {"Blog"}/>
-                    <Route path="/contact" view=||view! {"Contact"}/>
+                    <Route path="/" view=components::Layout>
+                        <Route path="" view=routes::home::HomePage/>
+                        <Route path="/about" view=||view! {"About"}/>
+                        <Route path="/projects" view=||view! {"Projects"}/>
+                        <Route path="/blog"  view=||view! {"Blog"}/>
+                        <Route path="/contact" view=||view! {"Contact"}/>
+                    </Route>
                 </Routes>
             </main>
         </Router>
