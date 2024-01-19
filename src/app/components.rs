@@ -63,7 +63,7 @@ pub fn Footer() -> impl IntoView {
                         <a href="/blog" class="mr-4 hover:text-blue-700 md:mr-6">"Blog"</a>
                     </li>
                     <li>
-                        <a href="https://github.com/Wollaston" class="mr-4 hover:text-blue-700 md:mr-6">"Github"</a>
+                        <a href="https://github.com/Wollaston" target="_blank" rel="noopener noreferrer" class="mr-4 hover:text-blue-700 md:mr-6">"Github"</a>
                     </li>
                     <li>
                         <a href="/contact" class="mr-4 hover:text-blue-700 md:mr-6">"Contact"</a>
