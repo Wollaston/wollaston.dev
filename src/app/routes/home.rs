@@ -1,8 +1,10 @@
 use leptos::*;
+use leptos_meta::Title;
 
 #[component]
 pub fn HomePage() -> impl IntoView {
     view! {
+        <Title text="~/home/wollaston.dev"/>
         <div class="flex-1 w-full bg-stone-50">
             <Hero />
         </div>

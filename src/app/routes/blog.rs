@@ -2,11 +2,11 @@ use leptos::*;
 use leptos_meta::Title;
 
 #[component]
-pub fn About() -> impl IntoView {
+pub fn Blog() -> impl IntoView {
     view! {
-        <Title text="~/about/wollaston.dev"/>
+        <Title text="~/blog/wollaston.dev"/>
         <div class="flex-1 w-full bg-stone-50">
-            <p>"About"</p>
+            <p>"Blog"</p>
         </div>
     }
 }

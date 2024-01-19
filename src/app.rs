@@ -19,7 +19,6 @@ pub fn App() -> impl IntoView {
         <Stylesheet id="leptos" href="/pkg/wollaston-dev.css"/>
 
         // sets the document title
-        <Title text="wollaston.dev"/>
 
         // content for this welcome page
         <Router fallback=|| {
@@ -34,10 +33,10 @@ pub fn App() -> impl IntoView {
                 <Routes>
                     <Route path="/" view=components::Layout>
                         <Route path="" view=routes::home::HomePage/>
-                        <Route path="/about" view=||view! {"About"}/>
-                        <Route path="/projects" view=||view! {"Projects"}/>
-                        <Route path="/blog"  view=||view! {"Blog"}/>
-                        <Route path="/contact" view=||view! {"Contact"}/>
+                        <Route path="/about" view=routes::about::About/>
+                        <Route path="/projects" view=routes::projects::Projects/>
+                        <Route path="/blog"  view=routes::blog::Blog/>
+                        <Route path="/contact" view=routes::contact::Contact/>
                     </Route>
                 </Routes>
             </main>
