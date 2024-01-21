@@ -16,7 +16,7 @@ pub fn HomePage() -> impl IntoView {
 pub fn Hero() -> impl IntoView {
     view! {
     <div class="bg-stone-50  dark:bg-gray-900">
-        <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+        <div class="grid max-w-screen-xl px-4 py-4 mx-auto lg:gap-8 xl:gap-0 lg:py-8 lg:grid-cols-12">
             <div class="mr-auto place-self-center lg:col-span-7">
                 <h1 class="font-mono min-w-fit mb-4 text-2xl font-extrabold tracking-tight leading-none md:text-3xl xl:text-4xl dark:text-white">"~$ "<span class="animate-typing inline-block overflow-hidden whitespace-nowrap align-middle font-mono after:border-r-black after:border-r-8 after:bg-black after:animate-blink">"aim_for_the_stars "</span></h1>
                 <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">"Get project-based help for your data, documents, and web projects"</p>
@@ -45,7 +45,7 @@ pub fn Hero() -> impl IntoView {
 pub fn FeatureList() -> impl IntoView {
     view! {
         <section class="dark:bg-gray-900">
-            <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+            <div class="py-2 px-4 mx-auto max-w-screen-xl sm:py-4 lg:px-6">
                 <div class="max-w-screen-md mb-8 lg:mb-16">
                     <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">"What do we do?"</h2>
                     <p class="text-gray-500 sm:text-xl dark:text-gray-400">"We have experience with various operations and management projects that can help get your team organized."</p>
