@@ -20,7 +20,7 @@ pub fn NavBar() -> impl IntoView {
     <nav class="bg-[#fee5b0] border-stone-500 drop-shadow-xl dark:bg-gray-900">
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="/assets/logo.png" class="h-12 rounded-lg" alt="Wollaston Logo" />
+            <img src="/assets/logo.png" class="h-12 rounded-lg hover:drop-shadow-lg " alt="Wollaston Logo" />
             <span class="self-center text-2xl hover:text-blue-700 font-semibold whitespace-nowrap dark:text-white">"Wollaston"</span>
         </a>
         <button class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-stone-800 rounded-lg md:hidden hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false"
@@ -96,7 +96,9 @@ fn NavbarHamburger() -> impl IntoView {
 pub fn Footer() -> impl IntoView {
     view! {
         <footer class="p-1 bg-[#fee5b0] md:p-2 lg:p-4 dark:bg-gray-800">
-            <div class="flex flex-col justify-center items-center mx-auto max-w-screen-xl text-center"> <img src="/assets/logo.png" class="m-4 h-12 rounded-lg" alt="Wollaston Logo" /> <ul class="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
+            <div class="flex flex-col justify-center items-center mx-auto max-w-screen-xl text-center">
+                <img src="/assets/logo.png" class="m-4 h-12 rounded-lg hover:drop-shadow-lg " alt="Wollaston Logo" />
+                <ul class="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
                     <li>
                         <a href="/about" class="mr-4 hover:text-blue-700 md:mr-6 ">"About"</a>
                     </li>
@@ -104,7 +106,7 @@ pub fn Footer() -> impl IntoView {
                         <a href="/blog" class="mr-4 hover:text-blue-700 md:mr-6">"Blog"</a>
                     </li>
                     <li>
-                        <a href="https://github.com/Wollaston" target="_blank" rel="noopener noreferrer" class="mr-4 hover:text-blue-700 md:mr-6">"Github"</a>
+                        <a href="https://github.com/Wollaston" target="_blank" rel="noopener noreferrer" class="mr-4 hover:text-blue-700 md:mr-6">"GitHub"</a>
                     </li>
                     <li>
                         <a href="/contact" class="mr-4 hover:text-blue-700 md:mr-6">"Contact"</a>

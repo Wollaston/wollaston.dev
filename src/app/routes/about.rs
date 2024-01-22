@@ -18,7 +18,7 @@ pub fn AboutSection() -> impl IntoView {
             <section class="mb-4">
                 <div class="grid grid-cols-1 lg:grid-cols-2">
                     <div class="mb-2 p-2 lg:col-span-1 md:px-3 lg:px-6">
-                        <h1 class="display:block font-mono min-w-fit mb-4 text-3xl lg:text-4xl font-extrabold leading-none dark:text-white">"~$ "<span class="animate-typing inline-block overflow-hidden whitespace-nowrap align-middle font-mono after:border-r-black after:border-r-8 after:bg-black after:animate-blink">"about_me"</span></h1>
+                        <h1 class="display:block font-mono min-w-fit mb-4 text-3xl lg:text-4xl font-extrabold leading-none dark:text-white">"~$ "<span class="animate-typing inline-block overflow-hidden whitespace-nowrap align-middle font-mono after:border-r-blue-700 after:border-r-8 after:bg-blue-700 after:animate-blink">"about_me"</span></h1>
                         <p class="mb-2 lg:text-xl text-neutral-500 dark:text-neutral-300">
 "Hi, I'm Matt. I have a background in legal and translation which has led me to
 a deep interest in Natural Language Processing (NLP) and related technologies. I 

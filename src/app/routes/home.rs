@@ -18,7 +18,7 @@ pub fn Hero() -> impl IntoView {
     <div class="bg-stone-50 mt-4 dark:bg-gray-900">
         <div class="grid max-w-screen-xl px-4 pt-4 pb-2 mx-auto lg:gap-8 xl:gap-0 lg:py-8 lg:grid-cols-12">
             <div class="mr-auto place-self-center lg:col-span-7">
-                <h1 class="font-mono min-w-fit mb-4 text-2xl font-extrabold tracking-tight leading-none md:text-3xl xl:text-4xl dark:text-white">"~$ "<span class="animate-typing inline-block overflow-hidden whitespace-nowrap align-middle font-mono after:border-r-black after:border-r-8 after:bg-black after:animate-blink">"aim_for_the_stars "</span></h1>
+                <h1 class="font-mono min-w-fit mb-4 text-2xl font-extrabold tracking-tight leading-none md:text-3xl xl:text-4xl dark:text-white">"~$ "<span class="animate-typing inline-block overflow-hidden whitespace-nowrap align-middle font-mono after:border-r-blue-700 after:border-r-8 after:bg-blue-700 after:animate-blink">"aim_for_the_stars "</span></h1>
                 <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">"Looking to expand or improve your business and processes? I can help with projects of any size."</p>
                 <div class="flex flex-row">
                 <div class="p-2">
