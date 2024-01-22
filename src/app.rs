@@ -35,6 +35,7 @@ pub fn App() -> impl IntoView {
                         <Route path="" view=routes::home::HomePage/>
                         <Route path="/about" view=routes::about::About/>
                         <Route path="/projects" view=routes::projects::Projects/>
+                        <Route path="/projects/aratype" view=routes::projects::aratype::Aratype/>
                         <Route path="/blog"  view=routes::blog::Blog/>
                         <Route path="/contact" view=routes::contact::Contact/>
                     </Route>
