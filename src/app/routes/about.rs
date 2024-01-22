@@ -37,7 +37,7 @@ simple problems with simple solutions."
 love learning about and using different technologies. Reach out if I can be helpful with projects
 of any size."
                         </p>
-                        <a href="/contact" class="inline-flex items-center bg-[#fee5b0] hover:text-[#fee5b0] justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+                        <a href="/contact" class="inline-flex items-center bg-[#fee5b0] hover:text-[#fee5b0] hover:bg-blue-700 justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
                    "Contact"
                         </a>
                    </div>
