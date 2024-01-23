@@ -3,9 +3,9 @@ use leptos::*;
 #[component]
 pub fn BlogSection() -> impl IntoView {
     let test_blog: Blog = Blog{
-        title: String::from("Building wollaston.dev"),
-        path: String::from("blog/building-wollaston-dev"),
-        description: String::from("A short blog discussing my experience building the wollaston.dev website using Rust, Leptos, and Axum."),
+        title: String::from("Me and My Website"),
+        path: String::from("blog/me-and-my-website"),
+        description: String::from("A short blog discussing my experience building Rust and building wollaston.dev using Leptos and axum."),
     };
 
     view! {
