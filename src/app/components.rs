@@ -19,7 +19,7 @@ pub fn NavBar() -> impl IntoView {
     view! {
     <nav class="bg-[#fee5b0] border-stone-500 drop-shadow-xl dark:bg-gray-900">
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <a href="/" class="flex items-center text-stone-800 space-x-3 rtl:space-x-reverse">
             <img src="/assets/logo.png" class="h-12 rounded-lg hover:drop-shadow-lg " alt="Wollaston Logo" />
             <span class="self-center text-2xl hover:text-blue-700 font-semibold whitespace-nowrap dark:text-white">"Wollaston"</span>
         </a>
@@ -100,16 +100,16 @@ pub fn Footer() -> impl IntoView {
                 <img src="/assets/logo.png" class="m-4 h-12 rounded-lg hover:drop-shadow-lg " alt="Wollaston Logo" />
                 <ul class="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
                     <li>
-                        <a href="/about" class="mr-4 hover:text-blue-700 md:mr-6 ">"About"</a>
+                        <a href="/about" class="mr-4 text-stone-800 hover:text-blue-700 md:mr-6 ">"About"</a>
                     </li>
                     <li>
-                        <a href="/blog" class="mr-4 hover:text-blue-700 md:mr-6">"Blog"</a>
+                        <a href="/blog" class="mr-4 text-stone-800 hover:text-blue-700 md:mr-6">"Blog"</a>
                     </li>
                     <li>
-                        <a href="https://github.com/Wollaston" target="_blank" rel="noopener noreferrer" class="mr-4 hover:text-blue-700 md:mr-6">"GitHub"</a>
+                        <a href="https://github.com/Wollaston" target="_blank" rel="noopener noreferrer" class="mr-4 text-stone-800 hover:text-blue-700 md:mr-6">"GitHub"</a>
                     </li>
                     <li>
-                        <a href="/contact" class="mr-4 hover:text-blue-700 md:mr-6">"Contact"</a>
+                        <a href="/contact" class="mr-4 text-stone-800 hover:text-blue-700 md:mr-6">"Contact"</a>
                     </li>
                 </ul>
                 <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">"© 2024 All Rights Reserved"</span>

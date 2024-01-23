@@ -25,17 +25,15 @@ a deep interest in Natural Language Processing (NLP) and related technologies. I
 plan to study Computational Linguistics at the graduate level."
                         </p>
                         <p class="mb-2 lg:text-xl text-neutral-500 dark:text-neutral-300">
-"My development ideals borrow from the Unix philosophy and the open-source-software movement.
-I believe businesses of all sizes can improve their processes by using existing tools and/or 
-incorporating proven open-source software to alleviate and even solve common issues. I believe this 
+"I believe businesses of all sizes can improve their processes by using existing tools and/or 
+incorporating proven open-source software to alleviate and even solve common issues. This 
 is particularly important for small businesses who do not have leverage when negotiating contracts. 
-This philosophy seeks to avoid vendor lock-in and long-term contracts wherever possible, and to match 
+My development ideals seek to avoid vendor lock-in and long-term contracts wherever possible, and to match 
 simple problems with simple solutions."
                         </p>
                          <p class="mb-2 lg:text-xl text-neutral-500 dark:text-neutral-300">
 "I love problem solving and improving the quality of life for businesses of all sizes. I also
-love learning about and using different technologies. Reach out if I can be helpful with projects
-of any size."
+love learning about and using different technologies. Reach out if I can be helpful or to learn more."
                         </p>
                         <a href="/contact" class="inline-flex items-center bg-[#fee5b0] hover:text-[#fee5b0] hover:bg-blue-700 justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
                    "Contact"
