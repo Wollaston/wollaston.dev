@@ -28,6 +28,7 @@ gray_matter = "0.2.6"
 serde = { version = "1.0.195", features = ["derive"] }
 pulldown-cmark = "0.9.3"
 reqwest = "0.11.23"
+aratype = { git = "https://github.com/Wollaston/aratype" }
 
 [features]
 hydrate = ["leptos/hydrate", "leptos_meta/hydrate", "leptos_router/hydrate"]

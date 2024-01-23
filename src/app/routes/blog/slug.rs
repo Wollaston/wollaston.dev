@@ -1,8 +1,5 @@
-use gray_matter::engine::YAML;
-use gray_matter::Matter;
 use leptos::*;
 use leptos_router::{use_params, Params};
-use pulldown_cmark::{html, Options, Parser};
 use serde::{Deserialize, Serialize};
 
 #[derive(Params, Clone, PartialEq, Eq, Debug)]
@@ -64,6 +61,10 @@ pub struct Content {
 
 #[server(GetPost, "/api")]
 pub async fn get_post(slug: String) -> Result<Content, ServerFnError> {
+    use gray_matter::engine::YAML;
+    use gray_matter::Matter;
+    use pulldown_cmark::{html, Options, Parser};
+
     let res = reqwest::get(format!("http://127.0.0.1:3000/assets/blog/{slug}.md")).await?;
     let content = res.text().await?;
     let content = content.as_str();
