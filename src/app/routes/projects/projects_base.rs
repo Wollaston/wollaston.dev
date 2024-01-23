@@ -18,7 +18,7 @@ pub fn ProjectsSection() -> impl IntoView {
                         <ProjectCard project=test_project />
                     </div>
                     <div class="mb-4 p-2 lg:col-span-1 drop-shadow-xl rounded-lg object-scale-down">
-                        <img class="drop-shadow-xl rounded-lg h-max w-max" src="assets/projects_astro.png" alt="An Astronaut Organizing his Projects in a Space Station."/>
+                        <img class="drop-shadow-xl rounded-lg h-max w-max" src="/assets/projects_astro.png" alt="An Astronaut Organizing his Projects in a Space Station."/>
                     </div>
                 </div>
             </section>
@@ -42,7 +42,7 @@ fn ProjectCard(project: Project) -> impl IntoView {
             </a>
             <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{project.description}</p>
             <a href={project.github_link} target="_blank" rel="noopener noreferrer" class="text-x inline-flex items-center text-blue-700 hover:underline">
-                <img src="assets/github-mark.svg" alt="The GitHub Logo" class="h-6 w-6 m-2"/>
+                <img src="/assets/github-mark.svg" alt="The GitHub Logo" class="h-6 w-6 m-2"/>
 
                "GitHub Repo"
             </a>

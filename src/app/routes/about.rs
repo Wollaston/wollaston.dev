@@ -42,7 +42,7 @@ of any size."
                         </a>
                    </div>
                     <div class="mb-4 p-2 lg:col-span-1 drop-shadow-xl rounded-lg object-scale-down">
-                        <img class="drop-shadow-xl rounded-lg h-max w-max" src="assets/about_astro.png" alt="An Astronaut Introducing Himself"/>
+                        <img class="drop-shadow-xl rounded-lg h-max w-max" src="/assets/about_astro.png" alt="An Astronaut Introducing Himself"/>
                     </div>
                 </div>
             </section>

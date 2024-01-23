@@ -17,7 +17,7 @@ pub fn BlogSection() -> impl IntoView {
                         <BlogCard blog=test_blog />
                     </div>
                     <div class="mb-4 p-2 lg:col-span-1 drop-shadow-xl rounded-lg object-scale-down">
-                        <img class="drop-shadow-xl rounded-lg h-max w-max" src="assets/blog_astro.png" alt="An Astronaut Writing a Blog in a Space Station."/>
+                        <img class="drop-shadow-xl rounded-lg h-max w-max" src="/assets/blog_astro.png" alt="An Astronaut Writing a Blog in a Space Station."/>
                     </div>
                 </div>
             </section>

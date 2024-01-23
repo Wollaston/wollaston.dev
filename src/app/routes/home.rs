@@ -34,7 +34,7 @@ pub fn Hero() -> impl IntoView {
                 </div>
             </div>
             <div class="drop-shadow-xl rounded-lg lg:mt-0 lg:col-span-5 lg:flex">
-                <img class="drop-shadow-xl rounded-lg h-max w-max m-2" src="assets/FloatingAstronaut.png" alt="An Astronaut Floating in Space"/>
+        <img class="drop-shadow-xl rounded-lg h-max w-max m-2" src="/assets/FloatingAstronaut.png" alt="An Astronaut Floating in Space"/>
             </div>
         </div>
     </div>
