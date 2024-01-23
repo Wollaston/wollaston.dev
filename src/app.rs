@@ -35,9 +35,7 @@ pub fn App() -> impl IntoView {
                         <Route path="" view=routes::home::HomePage/>
                         <Route path="/about" view=routes::about::About/>
                         <ProjectsRoutes />
-                        <Route path="/projects/aratype" view=routes::projects::aratype::Aratype/>
                         <BlogRoutes />
-                        <Route path="/blog/website"  view=routes::blog::website::Website/>
                         <Route path="/contact" view=routes::contact::Contact/>
                     </Route>
                 </Routes>
@@ -51,7 +49,8 @@ fn BlogRoutes() -> impl IntoView {
     view! {
         <Route path="/blog"  view=routes::blog::Blog>
             <Route path="" view=routes::blog::blog_base::BlogSection/>
-        </Route>
+            <Route path=":slug" view=routes::blog::slug::Slug/>
+       </Route>
     }
 }
 
@@ -60,6 +59,7 @@ fn ProjectsRoutes() -> impl IntoView {
     view! {
         <Route path="/projects" view=routes::projects::Projects>
             <Route path="" view=routes::projects::projects_base::ProjectsSection/>
+            <Route path="/aratype" view=routes::projects::aratype::Aratype/>
         </Route>
     }
 }

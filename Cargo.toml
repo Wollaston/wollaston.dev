@@ -24,6 +24,10 @@ wasm-bindgen = "=0.2.89"
 thiserror = "1.0.38"
 tracing = { version = "0.1.37", optional = true }
 http = "0.2.8"
+gray_matter = "0.2.6"
+serde = { version = "1.0.195", features = ["derive"] }
+pulldown-cmark = "0.9.3"
+reqwest = "0.11.23"
 
 [features]
 hydrate = ["leptos/hydrate", "leptos_meta/hydrate", "leptos_router/hydrate"]

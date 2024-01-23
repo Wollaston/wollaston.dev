@@ -3,7 +3,7 @@ use leptos_meta::Title;
 use leptos_router::Outlet;
 
 pub mod blog_base;
-pub mod website;
+pub mod slug;
 
 #[component]
 pub fn Blog() -> impl IntoView {
