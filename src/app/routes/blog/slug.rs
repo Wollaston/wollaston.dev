@@ -1,4 +1,8 @@
+use std::fmt::format;
+
+use gloo_net::http::Request;
 use leptos::*;
+use leptos_meta::Title;
 use leptos_router::{use_params, Params};
 use serde::{Deserialize, Serialize};
 
@@ -28,11 +32,15 @@ pub fn Slug() -> impl IntoView {
                         Some(content) => match content {
                             Ok(content) => view! {
                             <div>
-                                <header class="mb-4 lg:mb-6 not-format">
-                                    <h1 class="mb-4 text-3xl font-extrabold leading-tight text-blue-700 lg:mb-6 lg:text-4xl dark:text-white">{content.front_matter.title}</h1>
-                                </header>
-                                <div inner_html=content.content />
-                                // <h1 class="md-h1">"Test Header"</h1>
+                                <Title text=format!("~/blog/{}", content.front_matter.slug)/>
+                                <div>
+                                    <header class="mb-4 lg:mb-6 not-format">
+                                        <h1 class="mb-4 text-3xl font-extrabold leading-tight text-blue-700 lg:mb-6 lg:text-4xl dark:text-white">{content.front_matter.title}</h1>
+                                        <h3 class="mb-2 text-xl font-bold leading-tight text-blue-500 lg:m3-6 lg:text-2xl dark:text-white">{content.front_matter.date}</h3>
+                                    </header>
+                                    <div inner_html=content.content />
+                                    // <h1 class="md-h1">"test"</h1>
+                                </div>
                             </div>
                         }.into_any(),
                             Err(_) => view! {<h1>"Error Loading Content"</h1>}.into_any(),
@@ -59,13 +67,15 @@ pub struct Content {
     pub content: String,
 }
 
-#[server(GetPost, "/api")]
 pub async fn get_post(slug: String) -> Result<Content, ServerFnError> {
     use gray_matter::engine::YAML;
     use gray_matter::Matter;
     use pulldown_cmark::{html, Options, Parser};
 
-    let res = reqwest::get(format!("http://127.0.0.1:3000/assets/blog/{slug}.md")).await?;
+    let res = Request::get(format!("/assets/blog/{slug}.md").as_str())
+        .send()
+        .await
+        .unwrap();
     let content = res.text().await?;
     let content = content.as_str();
 

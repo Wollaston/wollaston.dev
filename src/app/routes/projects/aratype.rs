@@ -35,7 +35,7 @@ pub fn Converter() -> impl IntoView {
                         <div>
                             <label for="input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                             >"Input: "</label>
-                            <textarea id="input" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            <textarea id="input" rows="10" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 on:input=move |ev| {
                                     set_name(event_target_value(&ev));
                                 }
@@ -43,9 +43,9 @@ pub fn Converter() -> impl IntoView {
                             placeholder="Type your input here..."></textarea>
                         </div>
                     </div>
-                    <div class="flex flex-1 w-full p-2 flex-col">
-                        <p class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">"Buckwalter Transliteration: "</p>
-                        <div class="flex-1 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" dir="rtl">{converted}</div>
+                    <div class="flex flex-col flex-1 m-2">
+                        <p class="block mb-2 mt-0 text-sm font-medium text-gray-900 dark:text-white">"Buckwalter Transliteration: "</p>
+                        <div class="flex flex-1 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" dir="rtl">{converted}</div>
                     </div>
                 </div>
             </section>
