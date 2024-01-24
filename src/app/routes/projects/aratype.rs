@@ -45,7 +45,7 @@ pub fn Converter() -> impl IntoView {
                         </div>
                     </div>
                     <div class="flex flex-col flex-1 m-2">
-                        <p class="block mb-2 mt-0 text-sm font-medium text-gray-900 dark:text-stone-100">"Buckwalter Transliteration: "</p>
+                        <p class="block mb-2 mt-0 text-sm font-medium text-gray-900 dark:text-stone-100">"Transliteration: "</p>
                         <div class="flex flex-1 p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-stone-100 dark:focus:ring-blue-500 dark:focus:border-blue-500" dir="rtl">{converted}</div>
                     </div>
                 </div>
