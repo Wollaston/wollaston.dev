@@ -17,8 +17,8 @@ pub fn ProjectsSection() -> impl IntoView {
                         <h1 class="display:block font-mono min-w-fit mb-4 text-3xl lg:text-4xl font-extrabold leading-none dark:text-stone-100">"~$ "<span class="animate-typing inline-block overflow-hidden whitespace-nowrap align-middle font-mono after:border-r-blue-700 dark:after:border-r-[#fd8a04] after:border-r-8 after:bg-blue-700 dark:after:bg-[#fd8a04] after:animate-blink">"my_projects"</span></h1>
                         <ProjectCard project=test_project />
                     </div>
-                    <div class="mb-4 p-2 lg:col-span-1 drop-shadow-xl rounded-lg object-scale-down">
-                        <img class="object-scale-down drop-shadow-xl rounded-lg h-max w-max" src="/assets/projects_astro.png" alt="An Astronaut Organizing his Projects in a Space Station."/>
+                    <div class="mb-4 p-2 lg:col-span-1 drop-shadow-xl rounded-lg h-full">
+                        <img class="object-scale-down drop-shadow-xl rounded-lg w-full min-h-0" src="/assets/projects_astro.png" alt="An Astronaut Organizing his Projects in a Space Station."/>
                     </div>
                 </div>
             </section>

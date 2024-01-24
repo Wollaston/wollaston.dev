@@ -26,8 +26,8 @@ pub fn ContactSection() -> impl IntoView {
                             <a class="text-stone-800 hover:text-blue-700 dark:text-stone-100 dark:hover:text-[#fd8a04]" href="https://github.com/Wollaston" target="_blank" rel="noopener noreferrer">"GitHub"</a>
                         </p>
                     </div>
-                    <div class="mb-4 p-2 lg:col-span-1 drop-shadow-xl rounded-lg object-scale-down">
-                        <img class="object-scale-down drop-shadow-xl rounded-lg h-max w-max" src="/assets/contact_me_astro.png" alt="An Astronaut Floating in Space"/>
+                    <div class="mb-4 p-2 lg:col-span-1 drop-shadow-xl rounded-lg h-full">
+                        <img class="object-scale-down drop-shadow-xl rounded-lg w-full min-h-0" src="/assets/contact_me_astro.png" alt="An Astronaut Floating in Space"/>
                     </div>
                 </div>
             </section>
