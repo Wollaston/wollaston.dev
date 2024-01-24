@@ -9,7 +9,7 @@ pub mod projects_base;
 pub fn Projects() -> impl IntoView {
     view! {
         <Title text="~/projects/wollaston.dev"/>
-        <div class="flex-1 w-full bg-stone-50">
+        <div class="flex-1 w-full bg-stone-50 dark:bg-gray-900">
         <Outlet />
         </div>
     }

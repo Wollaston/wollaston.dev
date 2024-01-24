@@ -1,5 +1,3 @@
-use std::fmt::format;
-
 use gloo_net::http::Request;
 use leptos::*;
 use leptos_meta::Title;
@@ -35,8 +33,8 @@ pub fn Slug() -> impl IntoView {
                                 <Title text=format!("~/blog/{}", content.front_matter.slug)/>
                                 <div>
                                     <header class="mb-4 lg:mb-6 not-format">
-                                        <h1 class="mb-4 text-3xl font-extrabold leading-tight text-blue-700 lg:mb-6 lg:text-4xl dark:text-white">{content.front_matter.title}</h1>
-                                        <h3 class="mb-2 text-xl font-bold leading-tight text-blue-500 lg:m3-6 lg:text-2xl dark:text-white">{content.front_matter.date}</h3>
+                                        <h1 class="mb-4 text-3xl font-extrabold leading-tight text-blue-700 lg:mb-6 lg:text-4xl dark:text-stone-100">{content.front_matter.title}</h1>
+                                        <h3 class="mb-2 text-xl font-bold leading-tight text-blue-500 lg:m3-6 lg:text-2xl dark:text-stone-100">{content.front_matter.date}</h3>
                                     </header>
                                     <div inner_html=content.content />
                                     // <h1 class="md-h1">"test"</h1>
