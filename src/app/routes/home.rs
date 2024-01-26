@@ -22,12 +22,12 @@ pub fn Hero() -> impl IntoView {
                 <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">"Looking to expand or improve your business and processes? I can help with projects of any size."</p>
                 <div class="flex flex-row">
                     <div class="p-2">
-                        <a href="/projects" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg bg-[#fee5b0] hover:text-[#fee5b0] hover:bg-blue-700 focus:ring-4 focus:ring-gray-100 dark:text-stone-100 dark:border-gray-700 dark:bg-indigo-900 dark:hover:bg-[#fd8a04] dark:focus:ring-gray-800">
+                        <a href="/projects" class="inline-flex items-center justify-center mb-3 px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg bg-[#fee5b0] hover:text-[#fee5b0] hover:bg-blue-700 focus:ring-4 focus:ring-gray-100 dark:text-stone-100 dark:border-gray-700 dark:bg-indigo-900 dark:hover:bg-[#fd8a04] dark:focus:ring-gray-800">
                         "Projects"
                         </a>
                     </div>
                     <div class="p-2">
-                        <a href="/contact" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg bg-[#fee5b0] hover:text-[#fee5b0] hover:bg-blue-700 focus:ring-4 focus:ring-gray-100 dark:text-stone-100 dark:border-gray-700 dark:bg-indigo-900 dark:hover:bg-[#fd8a04] dark:focus:ring-gray-800">
+                        <a href="/contact" class="inline-flex items-center justify-center mb-3 px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg bg-[#fee5b0] hover:text-[#fee5b0] hover:bg-blue-700 focus:ring-4 focus:ring-gray-100 dark:text-stone-100 dark:border-gray-700 dark:bg-indigo-900 dark:hover:bg-[#fd8a04] dark:focus:ring-gray-800">
                         "Contact"
                         </a>
                     </div>

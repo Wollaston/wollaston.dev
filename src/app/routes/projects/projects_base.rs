@@ -44,7 +44,7 @@ struct Project {
 #[component]
 fn ProjectCard(project: Project) -> impl IntoView {
     view! {
-        <div class="max-w p-6 bg-stone-100 border border-gray-200 rounded-lg shadow dark:bg-indigo-900 dark:border-gray-700">
+        <div class="max-w m-3 p-6 bg-stone-100 border border-gray-200 rounded-lg shadow dark:bg-indigo-900 dark:border-gray-700">
             <a href={project.path}>
                 <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 hover:text-blue-700 dark:text-stone-100 dark:hover:text-[#fd8a04]">{project.title}</h5>
             </a>

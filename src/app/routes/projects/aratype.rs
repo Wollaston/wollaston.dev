@@ -21,7 +21,7 @@ pub fn Converter() -> impl IntoView {
         <div class="container my-8 mx-auto md:px-6">
             <section class="mb-4">
             <div class="flex flex-col">
-                <h1 class="m-2 font-medium text-stone-800 dark:text-stone-100">"A simple WASM app using Rust and Leptos that converts English letters to Arabic equivalents according to the Buckwalter transliteration table. Very much a work in progress."</h1>
+                <h1 class="m-2 font-medium text-stone-800 dark:text-stone-100">"A simple WASM app using Rust and Leptos that converts English letters to Arabic equivalents according to the Buckwalter transliteration table. Very much a work in progress. Note it currently does not work as well on mobile as it does on a computer."</h1>
                 <a href="https://en.wikipedia.org/wiki/Buckwalter_transliteration" target="_blank" rel="noopener noreferrer" class="m-2 font-normal italic text-stone-800 hover:text-blue-700 dark:text-stone-100 dark:hover:text-[#fd8a04]">
                     "Buckwalter Transliteration Wiki"
                 </a>
