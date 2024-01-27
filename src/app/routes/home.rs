@@ -16,7 +16,7 @@ pub fn HomePage() -> impl IntoView {
 pub fn Hero() -> impl IntoView {
     view! {
     <div>
-        <div class="grid max-w-screen-xl px-4 pt-4 pb-2 mx-auto lg:gap-8 xl:gap-0 lg:py-8 lg:grid-cols-12">
+        <div class="grid max-w-screen-xl px-4 py-8 pb-2 mx-auto lg:gap-8 xl:gap-0 lg:grid-cols-12">
             <div class="place-self-center lg:col-span-7">
                 <h1 class="font-mono min-w-fit mb-4 text-2xl font-extrabold tracking-tight leading-none md:text-3xl xl:text-4xl dark:text-stone-100">"~$ "<span class="animate-typing inline-block overflow-hidden whitespace-nowrap align-middle font-mono after:border-r-blue-700 dark:after:border-r-[#fd8a04] after:border-r-8 after:bg-blue-700 dark:after:bg-[#fd8a04] after:animate-blink">"aim_for_the_stars "</span></h1>
                 <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">"Looking to expand or improve your business and processes? I can help with projects of any size."</p>
