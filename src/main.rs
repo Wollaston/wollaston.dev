@@ -5,7 +5,13 @@ async fn main() {
     use leptos::*;
     use leptos_axum::{generate_route_list, LeptosRoutes};
     use wollaston_dev::app::*;
+    use wollaston_dev::content::ssr::db;
     use wollaston_dev::fileserv::file_and_error_handler;
+
+    let mut conn = db().await.expect("Could not connect to DB.");
+    if let Err(e) = sqlx::migrate!().run(&mut conn).await {
+        eprintln!("MIGRATE ERROR: {e:?}");
+    }
 
     // Setting get_configuration(None) means we'll be using cargo-leptos's env values
     // For deployment these variables are:

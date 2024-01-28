@@ -2,18 +2,36 @@ use aratype::buckwalter::convert_en_ar;
 use leptos::*;
 use leptos_meta::Title;
 
+use super::projects_base::Project;
+
 #[component]
 pub fn Aratype() -> impl IntoView {
+    let project = create_resource(|| (), |_| async move { get_project().await });
+
     view! {
         <Title text="~/projects/aratype/wollaston.dev"/>
         <div class="flex-1 w-full bg-stone-50 dark:bg-gray-900">
-            <Converter/>
+            <Transition fallback=move || view! {<p>"Loading..."</p>}>
+                {move || {
+                    project.get()
+                    .map(move |project| match project {
+                            Err(e) => {
+                                view! { <pre class="error">"Server Error: " {e.to_string()}</pre>}.into_view()
+                            }
+                            Ok(project) => {
+                                    view! {<Converter project/>}.into_view()
+                                }
+                            }
+                        )
+                    }
+                }
+            </Transition>
         </div>
     }
 }
 
 #[component]
-pub fn Converter() -> impl IntoView {
+pub fn Converter(project: Project) -> impl IntoView {
     let (name, set_name) = create_signal(String::new());
     let converted = move || convert_en_ar(name());
 
@@ -21,11 +39,12 @@ pub fn Converter() -> impl IntoView {
         <div class="container my-8 mx-auto md:px-6">
             <section class="mb-4">
             <div class="flex flex-col">
-                <h1 class="m-2 font-medium text-stone-800 dark:text-stone-100">"A simple WASM app using Rust and Leptos that converts English letters to Arabic equivalents according to the Buckwalter transliteration table. Very much a work in progress. Note it currently does not work as well on mobile as it does on a computer."</h1>
+                <h1 class="display:block font-mono min-w-fit mb-4 text-3xl lg:text-4xl font-extrabold leading-none dark:text-stone-100">"~$ "<span class="animate-typing inline-block overflow-hidden whitespace-nowrap align-middle font-mono after:border-r-blue-700 dark:after:border-r-[#fd8a04] after:border-r-8 after:bg-blue-700 dark:after:bg-[#fd8a04] after:animate-blink">{project.title}</span></h1>
+                <h1 class="m-2 font-medium text-stone-800 dark:text-stone-100">{project.description}</h1>
                 <a href="https://en.wikipedia.org/wiki/Buckwalter_transliteration" target="_blank" rel="noopener noreferrer" class="m-2 font-normal italic text-stone-800 hover:text-blue-700 dark:text-stone-100 dark:hover:text-[#fd8a04]">
                     "Buckwalter Transliteration Wiki"
                 </a>
-                <a href="https://github.com/Wollaston/aratype" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-700 dark:text-stone-100 hover:underline">
+                <a href={project.github_link} target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-700 dark:text-stone-100 hover:underline">
                     <img src="/assets/github-mark.svg" alt="The GitHub Logo" class="block dark:hidden h-6 w-6 m-2"/>
                     <img src="/assets/github-mark-white.svg" alt="The GitHub Logo" class="hidden dark:block h-6 w-6 m-2"/>
                     "GitHub Repo"
@@ -52,4 +71,18 @@ pub fn Converter() -> impl IntoView {
             </section>
         </div>
     }
+}
+
+#[server]
+async fn get_project() -> Result<Project, ServerFnError> {
+    use crate::content::ssr::db;
+
+    let mut conn = db().await?;
+
+    let project: Project = sqlx::query_as::<_, Project>("SELECT * FROM projects WHERE title = $1")
+        .bind("aratype")
+        .fetch_one(&mut conn)
+        .await?;
+
+    Ok(project)
 }
