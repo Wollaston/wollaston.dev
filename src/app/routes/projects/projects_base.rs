@@ -1,4 +1,3 @@
-use futures::TryStreamExt;
 use leptos::*;
 use serde::{Deserialize, Serialize};
 
@@ -62,6 +61,7 @@ fn ProjectCard(project: Project) -> impl IntoView {
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[cfg_attr(feature = "ssr", derive(sqlx::FromRow))]
 pub struct Project {
+    pub id: i32,
     pub title: String,
     pub path: String,
     pub github_link: String,
@@ -71,6 +71,7 @@ pub struct Project {
 #[server]
 async fn get_projects() -> Result<Vec<Project>, ServerFnError> {
     use crate::content::ssr::db;
+    use futures::TryStreamExt;
 
     let mut conn = db().await?;
 

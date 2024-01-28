@@ -1,4 +1,3 @@
-use gloo_net::http::Request;
 use leptos::*;
 use leptos_meta::Title;
 use leptos_router::{use_params, Params};
@@ -13,9 +12,9 @@ struct BlogParams {
 pub fn Slug() -> impl IntoView {
     let params = use_params::<BlogParams>();
 
-    let content = create_resource(
+    let blog = create_resource(
         move || params.get(),
-        move |params| async move { get_post(params.unwrap().slug).await },
+        move |params| async move { get_blog(params.unwrap().slug).await },
     );
 
     view! {
@@ -25,18 +24,18 @@ pub fn Slug() -> impl IntoView {
                 <Suspense
                 fallback=move || view! {<p>"Loading..."</p> }
                 >
-                    {move || match content.get() {
+                    {move || match blog.get() {
                         None => view! {<h1>"Error Loading Content"</h1>}.into_any(),
-                        Some(content) => match content {
-                            Ok(content) => view! {
+                        Some(blog) => match blog {
+                            Ok(blog) => view! {
                             <div>
-                                <Title text=format!("~/blog/{}", content.front_matter.slug)/>
+                                <Title text=format!("~/blog/{}", blog.0.slug)/>
                                 <div>
                                     <header class="mb-4 lg:mb-6 not-format">
-                                        <h1 class="mb-4 text-3xl font-extrabold leading-tight text-blue-700 lg:mb-6 lg:text-4xl dark:text-stone-100">{content.front_matter.title}</h1>
-                                        <h3 class="mb-2 text-xl font-bold leading-tight text-blue-500 lg:m3-6 lg:text-2xl dark:text-stone-100">{content.front_matter.date}</h3>
+                                        <h1 class="mb-4 text-3xl font-extrabold leading-tight text-blue-700 lg:mb-6 lg:text-4xl dark:text-stone-100">{blog.0.title}</h1>
+                                        <h3 class="mb-2 text-xl font-bold leading-tight text-blue-500 lg:m3-6 lg:text-2xl dark:text-stone-100">{blog.0.created_date}</h3>
                                     </header>
-                                    <div inner_html=content.content />
+                                    <div inner_html=blog.1 />
                                     // <h1 class="md-h1">"test"</h1>
                                 </div>
                             </div>
@@ -51,45 +50,39 @@ pub fn Slug() -> impl IntoView {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone)]
-pub struct FrontMatter {
-    pub date: String,
-    pub description: String,
-    pub slug: String,
-    pub title: String,
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[cfg_attr(feature = "ssr", derive(sqlx::FromRow))]
+pub struct Blog {
+    id: i32,
+    title: String,
+    slug: String,
+    description: String,
+    created_date: String,
+    last_modified_date: String,
+    content: String,
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone)]
-pub struct Content {
-    pub front_matter: FrontMatter,
-    pub content: String,
-}
-
-pub async fn get_post(slug: String) -> Result<Content, ServerFnError> {
-    use gray_matter::engine::YAML;
-    use gray_matter::Matter;
+#[server]
+pub async fn get_blog(slug: String) -> Result<(Blog, String), ServerFnError> {
+    use crate::content::ssr::db;
     use pulldown_cmark::{html, Options, Parser};
 
-    let res = Request::get(format!("/assets/blog/{slug}.md").as_str())
-        .send()
-        .await
-        .unwrap();
-    let content = res.text().await?;
-    let content = content.as_str();
+    let mut conn = db().await?;
 
-    let matter = Matter::<YAML>::new();
-    let front_matter = matter.parse_with_struct::<FrontMatter>(content).unwrap();
+    let blog: Blog = sqlx::query_as::<_, Blog>("SELECT * FROM blog WHERE slug = $1")
+        .bind(slug)
+        .fetch_one(&mut conn)
+        .await?;
+
+    let content = blog.content.as_str();
 
     let mut options = Options::empty();
     options.insert(Options::ENABLE_HEADING_ATTRIBUTES);
 
-    let parser = Parser::new_ext(&front_matter.content, options);
+    let parser = Parser::new_ext(content, options);
 
-    let mut html_ouput = String::new();
-    html::push_html(&mut html_ouput, parser);
+    let mut html_output = String::new();
+    html::push_html(&mut html_output, parser);
 
-    Ok(Content {
-        front_matter: front_matter.data,
-        content: html_ouput,
-    })
+    Ok((blog, html_output))
 }
