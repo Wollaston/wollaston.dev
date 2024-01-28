@@ -27,7 +27,7 @@ pub fn ContactSection() -> impl IntoView {
                         </p>
                     </div>
                     <div class="mb-4 p-2 lg:col-span-1 drop-shadow-xl rounded-lg h-full">
-                        <img class="object-scale-down drop-shadow-xl rounded-lg w-full min-h-0" src="/assets/contact_me_astro.webp" alt="An Astronaut Floating in Space"/>
+                        <img class="object-scale-down drop-shadow-xl rounded-lg w-full min-h-0" src="https://imagedelivery.net/-kEZoni8dAWk_nqST6IIYw/d178bf20-c384-4919-3b02-ac6800868300/public" alt="An Astronaut Floating in Space"/>
                     </div>
                 </div>
             </section>

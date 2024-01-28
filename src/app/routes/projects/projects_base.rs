@@ -26,7 +26,7 @@ pub fn ProjectsSection() -> impl IntoView {
                         <ProjectCard project=wollaston_dev />
                     </div>
                     <div class="mb-4 p-2 lg:col-span-1 drop-shadow-xl rounded-lg h-full">
-                        <img class="object-scale-down drop-shadow-xl rounded-lg w-full min-h-0" src="/assets/projects_astro.webp" alt="An Astronaut Organizing his Projects in a Space Station."/>
+                        <img class="object-scale-down drop-shadow-xl rounded-lg w-full min-h-0" src="https://imagedelivery.net/-kEZoni8dAWk_nqST6IIYw/e6db900a-4de6-4026-a664-a8d9a8603d00/public" alt="An Astronaut Organizing his Projects in a Space Station."/>
                     </div>
                 </div>
             </section>

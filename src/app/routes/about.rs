@@ -40,7 +40,7 @@ love learning about and using different technologies. Reach out if I can be help
                         </a>
                    </div>
                     <div class="mb-4 p-2 lg:col-span-1 drop-shadow-xl rounded-lg h-full">
-                        <img class="object-scale-down drop-shadow-xl rounded-lg w-full min-h-0" src="/assets/about_astro.webp" alt="An Astronaut Introducing Himself"/>
+                        <img class="object-scale-down drop-shadow-xl rounded-lg w-full min-h-0" src="https://imagedelivery.net/-kEZoni8dAWk_nqST6IIYw/ee0b1d17-3bec-4b01-2c74-467f3b36a600/public" alt="An Astronaut Introducing Himself"/>
                     </div>
                 </div>
             </section>

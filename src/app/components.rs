@@ -20,7 +20,7 @@ pub fn NavBar() -> impl IntoView {
     <nav class="bg-[#fee5b0] drop-shadow-xl dark:bg-indigo-900">
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="/assets/logo.png" class="h-12 rounded-lg hover:drop-shadow-lg " alt="Wollaston Logo" />
+            <img src="https://imagedelivery.net/-kEZoni8dAWk_nqST6IIYw/5332d459-ed51-4a8a-4cc2-7fc88bab4d00/public" class="h-12 rounded-lg hover:drop-shadow-lg " alt="Wollaston Logo" />
             <span class="self-center text-stone-800 dark:text-stone-100 text-2xl hover:text-blue-700 dark:hover:text-[#fd8a04] font-semibold whitespace-nowrap">"Wollaston"</span>
         </a>
         <button class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-stone-800 rounded-lg md:hidden hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false"
@@ -97,7 +97,7 @@ pub fn Footer() -> impl IntoView {
     view! {
         <footer class="p-1 bg-[#fee5b0] md:p-2 lg:p-4 dark:bg-indigo-900">
             <div class="flex flex-col justify-center items-center mx-auto max-w-screen-xl text-center">
-                <img src="/assets/logo.png" class="m-4 h-12 rounded-lg hover:drop-shadow-lg " alt="Wollaston Logo" />
+                <img src="https://imagedelivery.net/-kEZoni8dAWk_nqST6IIYw/5332d459-ed51-4a8a-4cc2-7fc88bab4d00/public" class="m-4 h-12 rounded-lg hover:drop-shadow-lg " alt="Wollaston Logo" />
                 <ul class="flex flex-wrap justify-center items-center mb-6">
                     <li>
                         <a href="/about" class="mr-4 text-stone-800 hover:text-blue-700 md:mr-6 dark:text-stone-100 dark:hover:text-[#fd8a04]">"About"</a>
