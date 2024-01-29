@@ -1,3 +1,4 @@
+use chrono::{NaiveDate, NaiveDateTime};
 use leptos::*;
 use leptos_meta::Title;
 use leptos_router::{use_params, Params};
@@ -33,7 +34,9 @@ pub fn Slug() -> impl IntoView {
                                 <div>
                                     <header class="mb-4 lg:mb-6 not-format">
                                         <h1 class="mb-4 text-3xl font-extrabold leading-tight text-blue-700 lg:mb-6 lg:text-4xl dark:text-stone-100">{blog.0.title}</h1>
-                                        <h3 class="mb-2 text-xl font-bold leading-tight text-blue-500 lg:m3-6 lg:text-2xl dark:text-stone-100">{blog.0.created_date}</h3>
+                                        <h3 class="mb-2 text-xl font-bold leading-tight text-blue-500 lg:m3-6 lg:text-2xl dark:text-stone-100">
+                                            {move || NaiveDateTime::parse_from_str(blog.0.created_date.as_str(), "%F %H:%M:%S%.3f").unwrap().format("%e %B %Y").to_string()}
+                                        </h3>
                                     </header>
                                     <div inner_html=blog.1 />
                                     // <h1 class="md-h1">"test"</h1>
