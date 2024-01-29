@@ -1,3 +1,9 @@
+# Install sqlite3
+FROM ubuntu:trusty
+RUN sudo apt-get -y update
+RUN sudo apt-get -y upgrade
+RUN sudo apt-get install -y sqlite3 libsqlite3-dev
+
 # Get started with a build env with Rust nightly
 FROM rustlang/rust:nightly-bullseye as builder
 
@@ -15,7 +21,6 @@ RUN cargo binstall cargo-leptos -y
 
 # Add the WASM target
 RUN rustup target add wasm32-unknown-unknown
-
 # Make an /app dir, which everything will eventually live in
 RUN mkdir -p /app
 WORKDIR /app
@@ -35,6 +40,9 @@ COPY --from=builder /app/target/site /app/site
 
 # Copy Cargo.toml if it’s needed at runtime
 COPY --from=builder /app/Cargo.toml /app/
+# Copy sqlite DB to /app directory
+COPY --from=builder /app/content.db /app/
+
 WORKDIR /app
 
 # Set any required env variables
