@@ -50,8 +50,8 @@ fn ProjectCard(project: Project) -> impl IntoView {
             </a>
             <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{project.description}</p>
             <a href={project.github_link} target="_blank" rel="noopener noreferrer" class="text-x inline-flex items-center text-blue-700 dark:text-stone-100 hover:underline">
-                <img src="/assets/github-mark.svg" alt="The GitHub Logo" class="block dark:hidden h-6 w-6 m-2"/>
-                <img src="/assets/github-mark-white.svg" alt="The GitHub Logo" class="hidden dark:block h-6 w-6 m-2"/>
+                <img src="https://imagedelivery.net/-kEZoni8dAWk_nqST6IIYw/9848fd3b-3d8e-451f-6cb2-5973b9395700/public" alt="The GitHub Logo" class="block dark:hidden h-6 w-6 m-2"/>
+                <img src="https://imagedelivery.net/-kEZoni8dAWk_nqST6IIYw/868ade0e-a4f8-4149-b122-6f1c4f652200/public" alt="The GitHub Logo" class="hidden dark:block h-6 w-6 m-2"/>
                "GitHub Repo"
             </a>
         </div>
