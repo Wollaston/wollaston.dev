@@ -37,6 +37,10 @@ COPY --from=builder /app/target/site /app/site
 
 # Copy Cargo.toml if it’s needed at runtime
 COPY --from=builder /app/Cargo.toml /app/
+
+# Copy static assets
+COPY --from=builder /app/public /app/public
+
 # Copy sqlite DB to /app directory
 COPY --from=builder /app/content.db /app/
 
@@ -44,6 +48,7 @@ COPY --from=builder /app/content.db /app/
 ENV RUST_LOG="info"
 ENV LEPTOS_SITE_ADDR="0.0.0.0:8080"
 ENV LEPTOS_SITE_ROOT="site"
+ENV LEPTOS_ASSETS_DIR="public"
 EXPOSE 8080
 
 # Run the server
