@@ -1,9 +1,3 @@
-# Install sqlite3
-FROM ubuntu:trusty
-RUN sudo apt-get -y update
-RUN sudo apt-get -y upgrade
-RUN sudo apt-get install -y sqlite3 libsqlite3-dev
-
 # Get started with a build env with Rust nightly
 FROM rustlang/rust:nightly-bullseye as builder
 
@@ -29,7 +23,14 @@ COPY . .
 # Build the app
 RUN cargo leptos build --release -vv
 
-FROM rustlang/rust:nightly-bullseye as runner
+FROM debian:bookworm-slim as runtime
+WORKDIR /app
+RUN apt-get update -y \
+  && apt-get install -y --no-install-recommends openssl ca-certificates \
+# Clean up
+  && apt-get autoremove -y \
+  && apt-get clean -y \
+  && rm -rf /var/lib/apt/lists/*
 
 # -------------- NB: update binary name to match app name in Cargo.toml ------------------
 # Copy the server binary to the /app directory
@@ -42,8 +43,6 @@ COPY --from=builder /app/target/site /app/site
 COPY --from=builder /app/Cargo.toml /app/
 # Copy sqlite DB to /app directory
 COPY --from=builder /app/content.db /app/
-
-WORKDIR /app
 
 # Set any required env variables
 ENV RUST_LOG="info"
