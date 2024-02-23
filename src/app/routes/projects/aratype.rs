@@ -75,13 +75,13 @@ pub fn Converter(project: Project) -> impl IntoView {
 
 #[server]
 async fn get_project() -> Result<Project, ServerFnError> {
-    use crate::content::ssr::db;
+    use crate::db::pool;
 
-    let mut conn = db().await?;
+    let pool = pool()?;
 
     let project: Project = sqlx::query_as::<_, Project>("SELECT * FROM projects WHERE title = $1")
         .bind("aratype")
-        .fetch_one(&mut conn)
+        .fetch_one(&pool)
         .await?;
 
     Ok(project)

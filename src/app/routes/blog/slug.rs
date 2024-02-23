@@ -67,14 +67,15 @@ pub struct Blog {
 
 #[server]
 pub async fn get_blog(slug: String) -> Result<(Blog, String), ServerFnError> {
-    use crate::content::ssr::db;
+    use crate::db::pool;
+
     use pulldown_cmark::{html, Options, Parser};
 
-    let mut conn = db().await?;
+    let pool = pool()?;
 
     let blog: Blog = sqlx::query_as::<_, Blog>("SELECT * FROM blog WHERE slug = $1")
         .bind(slug)
-        .fetch_one(&mut conn)
+        .fetch_one(&pool)
         .await?;
 
     let content = blog.content.as_str();

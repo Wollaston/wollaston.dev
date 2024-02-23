@@ -14,3 +14,7 @@ node_modules/
 test-results/
 end2end/playwright-report/
 playwright/.cache/
+
+# sqlite db extras
+content.db-shm
+content.db-wal

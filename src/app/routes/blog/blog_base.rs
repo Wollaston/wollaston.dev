@@ -66,16 +66,17 @@ pub struct BlogMetadata {
 
 #[server]
 async fn get_blogs() -> Result<Vec<BlogMetadata>, ServerFnError> {
-    use crate::content::ssr::db;
+    use crate::db::pool;
+
     use futures::TryStreamExt;
 
-    let mut conn = db().await?;
+    let pool = pool()?;
 
     let mut blogs: Vec<BlogMetadata> = Vec::new();
     let mut rows = sqlx::query_as::<_, BlogMetadata>(
         "SELECT id, title, slug, description, created_date, last_modified_date FROM blog",
     )
-    .fetch(&mut conn);
+    .fetch(&pool);
     while let Some(row) = rows.try_next().await? {
         blogs.push(row);
     }

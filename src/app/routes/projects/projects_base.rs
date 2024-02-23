@@ -70,13 +70,13 @@ pub struct Project {
 
 #[server]
 async fn get_projects() -> Result<Vec<Project>, ServerFnError> {
-    use crate::content::ssr::db;
+    use crate::db::pool;
     use futures::TryStreamExt;
 
-    let mut conn = db().await?;
+    let pool = pool()?;
 
     let mut projects: Vec<Project> = Vec::new();
-    let mut rows = sqlx::query_as::<_, Project>("SELECT * FROM projects").fetch(&mut conn);
+    let mut rows = sqlx::query_as::<_, Project>("SELECT * FROM projects").fetch(&pool);
     while let Some(row) = rows.try_next().await? {
         projects.push(row);
     }

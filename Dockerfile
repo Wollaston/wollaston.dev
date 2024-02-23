@@ -20,6 +20,8 @@ COPY . .
 # Build the app
 RUN cargo leptos build --release -vv
 
+# Use a base operating system as the runtime, as the Rust toolchain is not needed to run the now-compiled binary
+# This significantly reduces the size of the final Docker image
 FROM debian:bookworm-slim as runtime
 WORKDIR /app
 RUN apt-get update -y \
