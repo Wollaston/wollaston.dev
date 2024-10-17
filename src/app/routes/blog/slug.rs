@@ -19,37 +19,39 @@ pub fn Slug() -> impl IntoView {
     );
 
     view! {
-    <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 dark:bg-gray-900 antialiased">
-        <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
-            <article class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
-                <Suspense
-                fallback=move || view! {<p>"Loading..."</p> }
-                >
-                    {move || match blog.get() {
-                        None => view! {<h1>"Error Loading Content"</h1>}.into_any(),
-                        Some(blog) => match blog {
-                            Ok(blog) => view! {
-                            <div>
-                                <Title text=format!("~/blog/{}", blog.0.slug)/>
-                                <div>
-                                    <header class="mb-4 lg:mb-6 not-format">
-                                        <h1 class="mb-4 text-3xl font-extrabold leading-tight text-blue-700 lg:mb-6 lg:text-4xl dark:text-stone-100">{blog.0.title}</h1>
-                                        <h3 class="mb-2 text-xl font-bold leading-tight text-blue-500 lg:m3-6 lg:text-2xl dark:text-stone-100">
-                                            {move || NaiveDateTime::parse_from_str(blog.0.created_date.as_str(), "%F %H:%M:%S%.3f").unwrap().format("%e %B %Y").to_string()}
-                                        </h3>
-                                    </header>
-                                    <div inner_html=blog.1 />
-                                    // <h1 class="md-h1">"test"</h1>
-                                </div>
-                            </div>
-                        }.into_any(),
-                            Err(_) => view! {<h1>"Error Loading Content"</h1>}.into_any(),
-                        }
-                    }}
-                </Suspense>
-            </article>
+        <div class="flex-1 justify-center items-center h-screen overflow-y-auto bg-stone-50 dark:bg-gray-900">
+            <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 dark:bg-gray-900 antialiased">
+                <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
+                    <article class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
+                        <Suspense
+                        fallback=move || view! {<p>"Loading..."</p> }
+                        >
+                            {move || match blog.get() {
+                                None => view! {<h1>"Error Loading Content"</h1>}.into_any(),
+                                Some(blog) => match blog {
+                                    Ok(blog) => view! {
+                                    <div>
+                                        <Title text=format!("~/blog/{}", blog.0.slug)/>
+                                        <div>
+                                            <header class="mb-4 lg:mb-6 not-format">
+                                                <h1 class="mb-4 text-3xl font-extrabold leading-tight text-blue-700 lg:mb-6 lg:text-4xl dark:text-stone-100">{blog.0.title}</h1>
+                                                <h3 class="mb-2 text-xl font-bold leading-tight text-blue-500 lg:m3-6 lg:text-2xl dark:text-stone-100">
+                                                    {move || NaiveDateTime::parse_from_str(blog.0.created_date.as_str(), "%F %H:%M:%S%.3f").unwrap().format("%e %B %Y").to_string()}
+                                                </h3>
+                                            </header>
+                                            <div inner_html=blog.1 />
+                                            // <h1 class="md-h1">"test"</h1>
+                                        </div>
+                                    </div>
+                                }.into_any(),
+                                    Err(_) => view! {<h1>"Error Loading Content"</h1>}.into_any(),
+                                }
+                            }}
+                        </Suspense>
+                    </article>
+                </div>
+            </main>
         </div>
-    </main>
     }
 }
 
