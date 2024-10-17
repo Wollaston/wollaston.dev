@@ -33,33 +33,13 @@ pub fn App() -> impl IntoView {
                 <Routes>
                     <Route path="/" view=components::Layout>
                         <Route path="" view=routes::home::HomePage/>
-                        <Route path="/about" view=routes::about::About/>
-                        <ProjectsRoutes />
-                        <BlogRoutes />
-                        <Route path="/contact" view=routes::contact::Contact/>
+                        <Route path="/blog"  view=routes::blog::Blog/>
+                        <Route path="/blog/:slug" view=routes::blog::slug::Slug/>
+                        <Route path="/projects" view=routes::projects::Project/>
+                        <Route path="/projects/aratype" view=routes::projects::aratype::Aratype/>
                     </Route>
                 </Routes>
             </main>
         </Router>
-    }
-}
-
-#[component(transparent)]
-fn BlogRoutes() -> impl IntoView {
-    view! {
-        <Route path="/blog"  view=routes::blog::Blog>
-            <Route path="" view=routes::blog::blog_base::BlogSection/>
-            <Route path=":slug" view=routes::blog::slug::Slug/>
-       </Route>
-    }
-}
-
-#[component(transparent)]
-fn ProjectsRoutes() -> impl IntoView {
-    view! {
-        <Route path="/projects" view=routes::projects::Projects>
-            <Route path="" view=routes::projects::projects_base::ProjectsSection/>
-            <Route path="/aratype" view=routes::projects::aratype::Aratype/>
-        </Route>
     }
 }
