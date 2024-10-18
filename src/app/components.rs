@@ -4,7 +4,7 @@ use leptos_router::Outlet;
 #[component]
 pub fn Layout() -> impl IntoView {
     view! {
-        <div class="flex flex-row w-full overflow-hidden">
+        <div class="flex flex-row min-h-screen overflow-hidden">
             <Sidebar />
             <Outlet />
         </div>
