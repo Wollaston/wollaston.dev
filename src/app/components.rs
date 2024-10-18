@@ -20,7 +20,6 @@ fn Sidebar() -> impl IntoView {
                 <li class="font-semibold text-lg text-stone-800 hover:text-blue-700 dark:text-stone-100 dark:hover:text-[#fd8a04]"><a href="/blog">BLOG</a></li>
                 <li class="font-semibold text-lg text-stone-800 hover:text-blue-700 dark:text-stone-100 dark:hover:text-[#fd8a04]"><a href="/projects">PROJECTS</a></li>
             </ul>
-            <img src="logo.webp" alt="wollaston.dev logo" class="m-2 p-2 h-auto max-w-full rounded-lg hover:drop-shadow-xl" />
         </div>
     }
 }
