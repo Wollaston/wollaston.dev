@@ -2,7 +2,6 @@ use leptos::*;
 use serde::{Deserialize, Serialize};
 
 pub mod aratype;
-pub mod projects_base;
 
 #[component]
 pub fn Project() -> impl IntoView {

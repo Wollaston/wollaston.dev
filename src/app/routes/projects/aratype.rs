@@ -2,7 +2,7 @@ use aratype::buckwalter::convert_en_ar;
 use leptos::*;
 use leptos_meta::Title;
 
-use super::projects_base::Project;
+use crate::app::routes::projects::Project;
 
 #[component]
 pub fn Aratype() -> impl IntoView {
