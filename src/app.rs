@@ -1,43 +1,50 @@
-use crate::error_template::{AppError, ErrorTemplate};
-use leptos::*;
-use leptos_meta::*;
-use leptos_router::*;
+use leptos::prelude::*;
+use leptos_meta::{provide_meta_context, MetaTags, Stylesheet, Title};
+use leptos_router::{
+    components::{ParentRoute, Route, Router, Routes},
+    path,
+};
 
 pub mod components;
 pub mod routes;
 
+pub fn shell(options: LeptosOptions) -> impl IntoView {
+    view! {
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <AutoReload options=options.clone() />
+                <HydrationScripts options/>
+                <MetaTags/>
+            </head>
+            <body>
+                <App/>
+            </body>
+        </html>
+    }
+}
+
 #[component]
 pub fn App() -> impl IntoView {
-    // Provides context that manages stylesheets, titles, meta tags, etc.
     provide_meta_context();
 
     view! {
-
-
-        // injects a stylesheet into the document <head>
-        // id=leptos means cargo-leptos will hot-reload this stylesheet
         <Stylesheet id="leptos" href="/pkg/wollaston-dev.css"/>
 
-        // sets the document title
+        <Title text="wollaston.dev"/>
 
-        // content for this welcome page
-        <Router fallback=|| {
-            let mut outside_errors = Errors::default();
-            outside_errors.insert_with_default_key(AppError::NotFound);
-            view! {
-                <ErrorTemplate outside_errors/>
-            }
-            .into_view()
-        }>
+        <Router>
             <main>
-                <Routes>
-                    <Route path="/" view=components::Layout>
-                        <Route path="" view=routes::home::HomePage/>
-                        <Route path="/blog"  view=routes::blog::Blog/>
-                        <Route path="/blog/:slug" view=routes::blog::slug::Slug/>
-                        <Route path="/projects" view=routes::projects::Project/>
-                        <Route path="/projects/aratype" view=routes::projects::aratype::Aratype/>
-                    </Route>
+                <Routes fallback=|| "Page not found.".into_view()>
+                    <ParentRoute path=path!("/") view=components::Layout >
+                        <Route path=path!("") view=routes::home::HomePage/>
+                        <Route path=path!("/blog" ) view=routes::blog::Blog/>
+                        <Route path=path!("/blog/:slug") view=routes::blog::slug::Slug/>
+                        <Route path=path!("/projects") view=routes::projects::Project/>
+                        <Route path=path!("/projects/aratype") view=routes::projects::aratype::Aratype/>
+                    </ParentRoute>
                 </Routes>
             </main>
         </Router>

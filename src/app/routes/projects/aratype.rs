@@ -1,12 +1,12 @@
 use aratype::buckwalter::convert_en_ar;
-use leptos::*;
+use leptos::prelude::*;
 use leptos_meta::Title;
 
 use crate::app::routes::projects::Project;
 
 #[component]
 pub fn Aratype() -> impl IntoView {
-    let project = create_resource(|| (), |_| async move { get_project().await });
+    let project = Resource::new(|| (), |_| async move { get_project().await });
 
     view! {
         <Title text="~/projects/aratype/wollaston.dev"/>
@@ -16,10 +16,10 @@ pub fn Aratype() -> impl IntoView {
                     project.get()
                     .map(move |project| match project {
                             Err(e) => {
-                                view! { <pre class="error">"Server Error: " {e.to_string()}</pre>}.into_view()
+                                view! { <pre class="error">"Server Error: " {e.to_string()}</pre>}.into_any()
                             }
                             Ok(project) => {
-                                    view! {<Converter project/>}.into_view()
+                                    view! {<Converter project/>}.into_any()
                                 }
                             }
                         )
@@ -32,8 +32,8 @@ pub fn Aratype() -> impl IntoView {
 
 #[component]
 pub fn Converter(project: Project) -> impl IntoView {
-    let (name, set_name) = create_signal(String::new());
-    let converted = move || convert_en_ar(name());
+    let (name, set_name) = signal(String::new());
+    let converted = move || convert_en_ar(name.get());
 
     view! {
         <div class="container my-8 mx-auto md:px-6">
@@ -57,7 +57,7 @@ pub fn Converter(project: Project) -> impl IntoView {
                             >"Input: "</label>
                             <textarea id="input" rows="10" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-0 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-stone-100 dark:focus:border-[#fd8a04]"
                                                 on:input=move |ev| {
-                                    set_name(event_target_value(&ev));
+                                    set_name.set(event_target_value(&ev));
                                 }
                                 prop:value=name
                             placeholder="Type your input here..."></textarea>
@@ -75,13 +75,13 @@ pub fn Converter(project: Project) -> impl IntoView {
 
 #[server]
 async fn get_project() -> Result<Project, ServerFnError> {
-    use crate::db::pool;
+    use crate::state::AppState;
 
-    let pool = pool()?;
+    let state = expect_context::<AppState>();
 
     let project: Project = sqlx::query_as::<_, Project>("SELECT * FROM projects WHERE title = $1")
         .bind("aratype")
-        .fetch_one(&pool)
+        .fetch_one(&state.pool)
         .await?;
 
     Ok(project)

@@ -1,21 +1,22 @@
 use chrono::NaiveDateTime;
-use leptos::*;
+use leptos::prelude::*;
 use leptos_meta::Title;
-use leptos_router::{use_params, Params};
+use leptos_router::hooks::use_params;
+use leptos_router::params::Params;
 use serde::{Deserialize, Serialize};
 
 #[derive(Params, Clone, PartialEq, Eq, Debug)]
 struct BlogParams {
-    slug: String,
+    slug: Option<String>,
 }
 
 #[component]
 pub fn Slug() -> impl IntoView {
     let params = use_params::<BlogParams>();
 
-    let blog = create_resource(
+    let blog = Resource::new(
         move || params.get(),
-        move |params| async move { get_blog(params.unwrap().slug).await },
+        move |params| async move { get_blog(params.unwrap().slug.unwrap()).await },
     );
 
     view! {
@@ -69,15 +70,14 @@ pub struct Blog {
 
 #[server]
 pub async fn get_blog(slug: String) -> Result<(Blog, String), ServerFnError> {
-    use crate::db::pool;
-
+    use crate::state::AppState;
     use pulldown_cmark::{html, Options, Parser};
 
-    let pool = pool()?;
+    let state = expect_context::<AppState>();
 
     let blog: Blog = sqlx::query_as::<_, Blog>("SELECT * FROM blog WHERE slug = $1")
         .bind(slug)
-        .fetch_one(&pool)
+        .fetch_one(&state.pool)
         .await?;
 
     let content = blog.content.as_str();

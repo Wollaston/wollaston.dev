@@ -1,4 +1,4 @@
-use leptos::*;
+use leptos::{either::Either, prelude::*};
 use serde::{Deserialize, Serialize};
 
 pub mod slug;
@@ -14,7 +14,7 @@ pub fn Blog() -> impl IntoView {
 
 #[component]
 fn Blogs() -> impl IntoView {
-    let blogs = create_resource(|| (), |_| async move { get_blogs().await });
+    let blogs = Resource::new(|| (), |_| async move { get_blogs().await });
     view! {
         <ul class="m-2 p-2">
             <Transition fallback=move || view! {<p>"Loading..."</p>}>
@@ -22,17 +22,17 @@ fn Blogs() -> impl IntoView {
                     blogs.get()
                     .map(move |blogs| match blogs {
                             Err(e) => {
-                                view! { <pre class="error">"Server Error: " {e.to_string()}</pre>}.into_view()
+                                Either::Left(view! { <pre class="error">"Server Error: " {e.to_string()}</pre>}.into_view())
                             }
-                            Ok(blogs) => {
+                            Ok(blogs) => Either::Right({
                                 if blogs.is_empty() {
-                                    view! { <p>"No blogs were found."</p> }.into_view()
+                                    Either::Left(view! { <p>"No blogs were found."</p> }.into_view())
                                 } else {
-                                    blogs.into_iter().map(move |blog| {
+                                    Either::Right(blogs.into_iter().map(move |blog| {
                                         view! {<li class="font-semibold text-3xl text-stone-800 hover:text-blue-700 hover:underline dark:text-stone-100 dark:hover:text-[#fd8a04]"><a href={format!("/blog/{}", blog.slug)}>{blog.title.to_uppercase()}</a></li>}
-                                    }).collect_view()
+                                    }).collect_view())
                                 }
-                            }
+                            })
                         })
                     }
                 }
@@ -54,17 +54,16 @@ pub struct BlogMetadata {
 
 #[server]
 async fn get_blogs() -> Result<Vec<BlogMetadata>, ServerFnError> {
-    use crate::db::pool;
-
+    use crate::state::AppState;
     use futures::TryStreamExt;
 
-    let pool = pool()?;
+    let state = expect_context::<AppState>();
 
     let mut blogs: Vec<BlogMetadata> = Vec::new();
     let mut rows = sqlx::query_as::<_, BlogMetadata>(
         "SELECT id, title, slug, description, created_date, last_modified_date FROM blog",
     )
-    .fetch(&pool);
+    .fetch(&state.pool);
     while let Some(row) = rows.try_next().await? {
         blogs.push(row);
     }

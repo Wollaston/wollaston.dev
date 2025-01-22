@@ -1,4 +1,4 @@
-use leptos::{use_context, ServerFnError};
+use leptos::prelude::{use_context, ServerFnError};
 use sqlx::SqlitePool;
 
 pub async fn db() -> Result<SqlitePool, ServerFnError> {
