@@ -1,17 +1,29 @@
 use http::status::StatusCode;
-use leptos::prelude::*;
+use leptos::{config::errors::LeptosConfigError, prelude::*};
 use thiserror::Error;
 
 #[derive(Clone, Debug, Error)]
 pub enum AppError {
     #[error("Not Found")]
     NotFound,
+    #[error("Internal Server Error")]
+    InternalServerError,
+    #[error("Database Error: {0}")]
+    DatabaseError(String),
+    #[error("Configuration Error")]
+    ConfigError,
+    #[error("Leptos Config Error")]
+    LeptosConfigError(#[from] LeptosConfigError),
 }
 
 impl AppError {
     pub fn status_code(&self) -> StatusCode {
         match self {
             AppError::NotFound => StatusCode::NOT_FOUND,
+            AppError::InternalServerError => StatusCode::INTERNAL_SERVER_ERROR,
+            AppError::DatabaseError(_) => StatusCode::INTERNAL_SERVER_ERROR,
+            AppError::ConfigError => StatusCode::INTERNAL_SERVER_ERROR,
+            AppError::LeptosConfigError(_) => StatusCode::INTERNAL_SERVER_ERROR,
         }
     }
 }

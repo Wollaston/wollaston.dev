@@ -1,9 +1,7 @@
 pub mod app;
 #[cfg(feature = "ssr")]
-pub mod db;
+pub mod config;
 pub mod error_template;
-#[cfg(feature = "ssr")]
-pub mod state;
 
 #[cfg(feature = "hydrate")]
 #[wasm_bindgen::prelude::wasm_bindgen]

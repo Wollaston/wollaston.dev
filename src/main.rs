@@ -8,19 +8,12 @@ async fn main() -> Result<(), Box<dyn Error>> {
     use leptos::prelude::*;
     pub use leptos_axum::{generate_route_list, LeptosRoutes};
     use wollaston_dev::app::*;
-    use wollaston_dev::state::AppState;
+    use wollaston_dev::config::AppState;
 
-    let conf = get_configuration(None)?;
-    let leptos_options = conf.leptos_options;
-    let addr = leptos_options.site_addr;
+    let app_state = AppState::new().await?;
+
+    let addr = app_state.leptos_options.site_addr;
     let routes = generate_route_list(App);
-
-    let pool = wollaston_dev::db::db().await.unwrap();
-
-    let app_state = AppState {
-        leptos_options,
-        pool: pool.clone(),
-    };
 
     let app = Router::new()
         .leptos_routes_with_context(

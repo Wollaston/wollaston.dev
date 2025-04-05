@@ -57,7 +57,6 @@ pub fn Slug() -> impl IntoView {
 }
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
-#[cfg_attr(feature = "ssr", derive(sqlx::FromRow))]
 pub struct Blog {
     id: i32,
     title: String,
@@ -70,15 +69,16 @@ pub struct Blog {
 
 #[server]
 pub async fn get_blog(slug: String) -> Result<(Blog, String), ServerFnError> {
-    use crate::state::AppState;
+    use crate::config::AppState;
     use pulldown_cmark::{html, Options, Parser};
 
     let state = expect_context::<AppState>();
 
-    let blog: Blog = sqlx::query_as::<_, Blog>("SELECT * FROM blog WHERE slug = $1")
-        .bind(slug)
-        .fetch_one(&state.pool)
-        .await?;
+    let blog: Blog = state
+        .db
+        .select(("blogs", slug))
+        .await?
+        .ok_or_else(|| ServerFnError::new("Could not fetch blog"))?;
 
     let content = blog.content.as_str();
 

@@ -45,7 +45,6 @@ fn Projects() -> impl IntoView {
 }
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
-#[cfg_attr(feature = "ssr", derive(sqlx::FromRow))]
 pub struct Project {
     pub id: i32,
     pub title: String,
@@ -56,16 +55,11 @@ pub struct Project {
 
 #[server]
 async fn get_projects() -> Result<Vec<Project>, ServerFnError> {
-    use crate::state::AppState;
-    use futures::TryStreamExt;
+    use crate::config::AppState;
 
     let state = expect_context::<AppState>();
 
-    let mut projects: Vec<Project> = Vec::new();
-    let mut rows = sqlx::query_as::<_, Project>("SELECT * FROM projects").fetch(&state.pool);
-    while let Some(row) = rows.try_next().await? {
-        projects.push(row);
-    }
+    let projects = state.db.select("projects").await?;
 
     Ok(projects)
 }

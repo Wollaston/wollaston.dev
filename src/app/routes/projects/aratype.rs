@@ -75,14 +75,15 @@ pub fn Converter(project: Project) -> impl IntoView {
 
 #[server]
 async fn get_project() -> Result<Project, ServerFnError> {
-    use crate::state::AppState;
+    use crate::config::AppState;
 
     let state = expect_context::<AppState>();
 
-    let project: Project = sqlx::query_as::<_, Project>("SELECT * FROM projects WHERE title = $1")
-        .bind("aratype")
-        .fetch_one(&state.pool)
-        .await?;
+    let project = state
+        .db
+        .select(("projects", "aratype"))
+        .await?
+        .ok_or_else(|| ServerFnError::new("Error fetching Projects"))?;
 
     Ok(project)
 }

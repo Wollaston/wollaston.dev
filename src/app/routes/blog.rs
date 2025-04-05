@@ -42,7 +42,6 @@ fn Blogs() -> impl IntoView {
 }
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
-#[cfg_attr(feature = "ssr", derive(sqlx::FromRow))]
 pub struct BlogMetadata {
     id: i32,
     title: String,
@@ -54,19 +53,11 @@ pub struct BlogMetadata {
 
 #[server]
 async fn get_blogs() -> Result<Vec<BlogMetadata>, ServerFnError> {
-    use crate::state::AppState;
-    use futures::TryStreamExt;
+    use crate::config::AppState;
 
     let state = expect_context::<AppState>();
 
-    let mut blogs: Vec<BlogMetadata> = Vec::new();
-    let mut rows = sqlx::query_as::<_, BlogMetadata>(
-        "SELECT id, title, slug, description, created_date, last_modified_date FROM blog",
-    )
-    .fetch(&state.pool);
-    while let Some(row) = rows.try_next().await? {
-        blogs.push(row);
-    }
+    let blogs = state.db.select("blogs").await?;
 
     Ok(blogs)
 }
