@@ -55,7 +55,7 @@ pub fn Converter(project: Project) -> impl IntoView {
                         <div>
                             <label for="input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-stone-100"
                             >"Input: "</label>
-                            <textarea id="input" rows="10" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-0 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-stone-100 dark:focus:border-[#fd8a04]"
+                            <textarea id="input" rows="10" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:border-blue-500 focus:outline-hidden focus:ring-0 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-stone-100 dark:focus:border-[#fd8a04]"
                                                 on:input=move |ev| {
                                     set_name.set(event_target_value(&ev));
                                 }

@@ -22,7 +22,7 @@ pub fn Slug() -> impl IntoView {
     view! {
         <div class="flex-1 justify-center items-center h-screen overflow-y-auto bg-stone-50 dark:bg-gray-900">
             <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 dark:bg-gray-900 antialiased">
-                <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
+                <div class="flex justify-between px-4 mx-auto max-w-(--breakpoint-xl) ">
                     <article class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
                         <Suspense
                         fallback=move || view! {<p>"Loading..."</p> }
