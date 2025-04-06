@@ -26,7 +26,7 @@ fn Blogs() -> impl IntoView {
                             }
                             Ok(blogs) => Either::Right({
                                 if blogs.is_empty() {
-                                    Either::Left(view! { <p>"No blogs were found."</p> }.into_view())
+                                    Either::Left(view! { <p class="font-semibold text-lg text-stone-800 hover:text-blue-700 dark:text-stone-100 dark:hover:text-[#fd8a04]">"No blogs were found."</p> }.into_view())
                                 } else {
                                     Either::Right(blogs.into_iter().map(move |blog| {
                                         view! {<li class="font-semibold text-3xl text-stone-800 hover:text-blue-700 hover:underline dark:text-stone-100 dark:hover:text-[#fd8a04]"><a href={format!("/blog/{}", blog.slug)}>{blog.title.to_uppercase()}</a></li>}
