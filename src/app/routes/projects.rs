@@ -46,10 +46,9 @@ fn Projects() -> impl IntoView {
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Project {
-    pub id: i32,
     pub title: String,
     pub path: String,
-    pub github_link: String,
+    pub github_link: Option<String>,
     pub description: String,
 }
 
