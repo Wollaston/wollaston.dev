@@ -1,0 +1,1 @@
+2025/04/05-21:27:14.716395 125007690704448 [WARN] [db/db_impl/db_impl_open.cc:1603] Failed to truncate log #88: IO error: While open a file for appending: data/000088.log: Permission denied
