@@ -72,15 +72,15 @@ impl AppState {
         let db = Surreal::new::<RocksDb>(&*env.database_path)
             .await
             .map_err(|err| AppError::DatabaseError(err.to_string()))?;
-
-        // Sign in as root
-        db.signin(Root {
-            username: &env.database_user,
-            password: &env.database_password,
-        })
-        .await
-        .map_err(|err| AppError::DatabaseError(err.to_string()))?;
-
+        //
+        // // Sign in as root
+        // db.signin(Root {
+        //     username: &env.database_user,
+        //     password: &env.database_password,
+        // })
+        // .await
+        // .map_err(|err| AppError::DatabaseError(err.to_string()))?;
+        //
         // Init the namespace and database if
         // they do not already exist
         db.query(
@@ -108,9 +108,13 @@ DEFINE DATABASE IF NOT EXISTS wollaston;
         // types are defined.
         db.query(
             "
-DEFINE TABLE IF NOT EXISTS wollaaston SCHEMALESS;
-DEFINE FIELD created ON TABLE wollaston TYPE datetime DEFAULT time::now() READONLY;
-DEFINE FIELD updated ON TABLE bill VALUE time::now();
+DEFINE TABLE IF NOT EXISTS blog SCHEMALESS;
+DEFINE FIELD created ON TABLE blogs TYPE datetime DEFAULT time::now() READONLY;
+DEFINE FIELD updated ON TABLE blogs VALUE time::now();
+
+DEFINE TABLE IF NOT EXISTS projects SCHEMALESS;
+DEFINE FIELD created ON TABLE projects TYPE datetime DEFAULT time::now() READONLY;
+DEFINE FIELD updated ON TABLE projects VALUE time::now();
 ",
         )
         .await
