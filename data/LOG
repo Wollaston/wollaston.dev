@@ -1,0 +1,1 @@
+2025/05/11-10:02:55.210957 77399 [WARN] [db/db_impl/db_impl_open.cc:1603] Failed to truncate log #119: IO error: While open a file for appending: data/000119.log: Permission denied

@@ -12,7 +12,7 @@
   compaction_readahead_size=16777216
   strict_bytes_per_sync=false
   bytes_per_sync=0
-  max_background_jobs=32
+  max_background_jobs=24
   avoid_flush_during_shutdown=false
   max_background_flushes=-1
   delayed_write_rate=16777216
