@@ -1,5 +1,5 @@
 # Get started with a build env with Rust nightly
-FROM rust:1.86-bullseye as builder
+FROM rust:1.86 as builder
 
 # Install cargo-binstall, which makes it easier to install other
 # cargo extensions like cargo-leptos
